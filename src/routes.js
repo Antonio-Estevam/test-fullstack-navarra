@@ -1,7 +1,9 @@
 const axios = require('axios')
 const express = require('express')
+require('dotenv').config();
 
 const routes = express.Router()
+const apiUrl = process.env.API_URL;
 
 routes.get('/', (request, response) => {
     response.status(200).json({ok:true})
@@ -48,7 +50,7 @@ routes.post('/array/order', async (request, response) => {
             const bestCondition = paymentPriorities[elementA.condicao_pagamento] - paymentPriorities[elementB.condicao_pagamento];
 
             const designationPORT = elementA.pais === 'PORT' ? -1 : elementB.pais === 'PORT' ? 1 : 0;
-            
+
             const totalWeighting = 0.5 * greaterQuantity + 0.3 * bestCondition + 0.2 * designationPORT;
       
             return totalWeighting;
@@ -65,7 +67,6 @@ routes.post('/array/order', async (request, response) => {
 );
 
 routes.get('/array/api', async (request, response) => {
-    const apiUrl = "https://pastebin.pl/view/raw/8fced5f8"
 
     try {
         const result = await axios.get(apiUrl)
