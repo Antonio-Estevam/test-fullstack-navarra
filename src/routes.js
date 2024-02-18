@@ -1,9 +1,7 @@
 const axios = require('axios')
 const express = require('express')
-require('dotenv').config();
 
 const routes = express.Router()
-const apiUrl = process.env.API_URL;
 
 routes.get('/', (request, response) => {
     response.status(200).json({ok:true})
@@ -30,11 +28,23 @@ routes.post('/array/count', async (request, response) => {
 );
 
 routes.post('/array/order', async (request, response) => {
+    function isArrayValid(array){
+        const camposNecessarios = ["id", "cesto", "pais", "quantidade", "condicao_pagamento"];
+
+        if (!Array.isArray(array) || !array.length > 0) {
+            return false        
+        }     
+    
+        return array.every(elemento =>
+            camposNecessarios.every(campo => campo in elemento)
+        );
+    } 
+
     try{
         const  arrayBodyRequest = await request.body
         
-        if (!Array.isArray(arrayBodyRequest)) {
-            return response.status(400).json({ error: 'O corpo da requisição deve ser um array JSON.' });        
+        if(!isArrayValid(arrayBodyRequest)){
+            return response.status(400).json({ error: 'No corpo da requisição deve conter um array JSON com todos os elementos necessarios para o processamento' });  
         }
 
         const elementWithPrevision = arrayBodyRequest.map((element) => {
@@ -67,6 +77,7 @@ routes.post('/array/order', async (request, response) => {
 );
 
 routes.get('/array/api', async (request, response) => {
+    const apiUrl = "https://pastebin.pl/view/raw/8fced5f8"
 
     try {
         const result = await axios.get(apiUrl)
