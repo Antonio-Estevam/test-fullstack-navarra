@@ -5,6 +5,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [Axios](https://axios-http.com/)
+- [Swagger](https://swagger.io/)
 
 ## 💻 Projeto
 
@@ -17,5 +18,9 @@ Teste prático para vaga de FULLSTACK DEVELOPER
 - Rode o `npm run dev` para iniciar a aplicação.
 
 A aplicação estará disponível em `http://localhost:3333/`
+
+
+
+Documentação de como executar as requisições: http://localhost:3333/api-docs/
 
 

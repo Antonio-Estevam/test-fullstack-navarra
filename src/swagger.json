@@ -1,0 +1,215 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Api teste Fullstack",
+        "description": "Essa api tem como objetivo atender requisitos que foram defindos como forma de teste de um processo seletivo.",
+        "contact": {
+            "email": "antonioessifilho@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url":"http://localhost:3333",
+            "description":"API de desenvolvimento"
+        }
+    ],
+    "paths": {
+        "/":{
+            "get":{
+                "summary": "Status code 200",
+                "description": "Essa rota retorna sempre o status code 200.",
+                "tag":["elements"],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "return":{
+                                        "type":"object",
+                                        "ok":{
+                                                "type": "bolean"                                                                                        
+                                      }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/array/api":{
+            "get":{
+                "summary": "Status code 200",
+                "description": "Essa rota retorna sempre o status code 200.",
+                "tag":["elements"],
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Array"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Erro ao consumir a API"
+                    }
+                }
+            }
+        },
+        "/array/count":{
+            "post":{
+                "summary": "Total de elementos",
+                "description": "Essa rota retorna o número total de elementos do array recebido.",
+                "tag": ["elements"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                               "type":"array",
+                               "items": {
+
+                                   "$ref": "#/components/schemas/Array"
+                               } 
+                            },
+                            "examples": {
+                                "array": [{
+                                    "value": {
+                                        "id": 179,
+                                        "cesto": "01H",
+                                        "pais": "MOC",
+                                        "quantidade": 2,
+                                        "condicao_pagamento": "90"
+                                    }
+                                }]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "return":{
+                                        "type":"object",
+                                        "número total de elementos do array":{
+                                                "type": "number"
+                                                                                        
+                                      }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No corpo da requisição deve conter um array JSON"
+                    }
+                }
+            }            
+        },
+        "/array/order":{
+            "post":{
+                "summary": "Total de elementos",
+                "description": "Essa rota retorna o número total de elementos do array recebido.",
+                "tag": ["elements"],
+                "requestBody": {
+                    "content":{
+                        "application/json": {
+                            "schema": {
+                                "type":"array",
+                                "items": {
+ 
+                                    "$ref": "#/components/schemas/Array"
+                                } 
+                             },
+                            "examples": {
+                                "array": [{
+                                    "value": {
+                                        "id": 179,
+                                        "cesto": "01H",
+                                        "pais": "MOC",
+                                        "quantidade": 2,
+                                        "condicao_pagamento": "90"
+                                    }
+                                }]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "return":{
+                                            "type":"object",
+                                            "properties":{
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "cesto": {
+                                                    "type": "string"
+                                                },
+                                                "pais": {
+                                                    "type": "string"
+                                                },
+                                                "quantidade": {
+                                                    "type": "number"
+                                                },
+                                                "condicao_pagamento": {
+                                                    "type": "string"
+                                                },
+                                                "previsao_consumo": {
+                                                    "type": "number"
+                                                }
+                                        }
+                                        }
+
+                                    }                                    
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No corpo da requisição deve conter um array JSON com todos os elementos necessarios para o processamento"
+                    }
+                }
+            }            
+        }
+    },
+    "components": {
+        "schemas": {
+            "Array":{
+                "properties":{
+                    "id": {
+                        "type": "number"
+                    },
+                    "cesto": {
+                        "type": "string"
+                    },
+                    "pais": {
+                        "type": "string"
+                    },
+                    "quantidade": {
+                        "type": "number"
+                    },
+                    "condicao_pagamento": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+    
+}

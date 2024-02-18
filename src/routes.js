@@ -86,6 +86,7 @@ routes.get('/array/api', async (request, response) => {
         response.status(200).json(data)
 
     } catch (error) {
+        response.status(500).json({ error: 'Erro ao consumir a API.' });
         console.error('Erro ao consumir a API:', error.message);  
     }
 })  
