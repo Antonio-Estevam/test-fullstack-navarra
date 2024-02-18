@@ -78,16 +78,16 @@
                                } 
                             },
                             "examples": {
-                                "array": [{
-                                    "value": {
+                                "array": {
+                                    "value": [{
                                         "id": 179,
                                         "cesto": "01H",
                                         "pais": "MOC",
                                         "quantidade": 2,
                                         "condicao_pagamento": "90"
-                                    }
-                                }]
-                            }
+                                    }]
+                                }
+                            }                           
                         }
                     }
                 },
@@ -117,31 +117,30 @@
         },
         "/array/order":{
             "post":{
-                "summary": "Total de elementos",
-                "description": "Essa rota retorna o número total de elementos do array recebido.",
+                "summary": "Ordena elementos",
+                "description": "Essa rota retorne os elementos ordenados e calcula a previsão de custo.",
                 "tag": ["elements"],
                 "requestBody": {
                     "content":{
                         "application/json": {
                             "schema": {
                                 "type":"array",
-                                "items": {
- 
+                                "items": { 
                                     "$ref": "#/components/schemas/Array"
                                 } 
                              },
-                            "examples": {
-                                "array": [{
-                                    "value": {
+                             "examples": {
+                                "array": {
+                                    "value": [{
                                         "id": 179,
                                         "cesto": "01H",
                                         "pais": "MOC",
                                         "quantidade": 2,
                                         "condicao_pagamento": "90"
-                                    }
-                                }]
+                                    }]
+                                }
                             }
-                        }
+                        }                            
                     }
                 },
                 "responses": {
